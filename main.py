@@ -58,15 +58,22 @@ def game_loop():
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.type == pygame.K_q:
+                    if event.type == pygame.K_ESCAPE:
                         game_over = True
+                        pygame.quit()
                         game_close = False
+                        pygame.quit()
                     if event.key == pygame.K_c:
                         game_loop()
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: game_over = True
+            if event.type == pygame.QUIT: 
+                game_over = True
+                pygame.quit()
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    game_over = True
+                    pygame.quit()
                 if event.key == pygame.K_LEFT:
                     x_change -= 10
                     y_change = 0
@@ -110,7 +117,7 @@ def game_loop():
             foody = int(round(random.randrange(0, height - y) / 10.0) * 10.0)
             snake_length += 1
             
-            clock.tick(30 + 10)
+        clock.tick(30)
 
     pygame.quit()
     quit()
